@@ -20,7 +20,7 @@ function App() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/products");
+      const res = await fetch("/api/products");
       const data = await res.json();
       setProducts(data);
     } catch (err) {
@@ -30,7 +30,7 @@ function App() {
 
   const handleAddProduct = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/products", {
+      const res = await fetch("/api/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProduct),
@@ -47,7 +47,7 @@ function App() {
 
   const handleUpdateProduct = async () => {
     try {
-      const res = await fetch(`http://localhost:3001/api/products/${editingProduct.id}`, {
+      const res = await fetch(`/api/products/${editingProduct.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editingProduct),
@@ -66,11 +66,11 @@ function App() {
     console.log(id)
     try {
       if (id) {
-        await fetch(`http://localhost:3001/api/products/${id}`, { method: "DELETE" });
+        await fetch(`/api/products/${id}`, { method: "DELETE" });
       }
       else {
         for (const id of selectedProducts) {
-          await fetch(`http://localhost:3001/api/products/${id}`, { method: "DELETE" });
+          await fetch(`/api/products/${id}`, { method: "DELETE" });
         }
       }
       fetchProducts();
